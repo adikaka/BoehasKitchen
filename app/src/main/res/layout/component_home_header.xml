@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FF785B">
+    
+    <ImageView
+        android:id="@+id/ivListMenu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_listmenu"/>
+
+    <ImageView
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/ic_basket"/>
+
+    <TextView
+        android:id="@+id/tvTitleHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivListMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textAlignment="center"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:id="@+id/tvSubtitleHeader"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleHeader"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:text="Homemade meals prepared with love. Richest ingredients."
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textColor="#ffffff"/>
+    
+    <LinearLayout
+        android:id="@+id/btnSearch"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitleHeader"
+        android:layout_width="232dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@drawable/bottom_sheet_backgroundwhite">
+        
+        <ImageView
+            android:layout_marginEnd="5dp"
+            android:layout_gravity="center"
+            android:layout_width="17dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_search"/>
+        
+        <TextView
+            android:layout_marginStart="5dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Menu"
+            android:textSize="17sp"
+            />
+
+    </LinearLayout>
+
+
+    <View
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSearch"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/rounded_backgroundorange"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_gradient_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ivLogoBoehas"
+        android:layout_width="214dp"
+        android:layout_height="32dp"
+        android:src="@drawable/iv_logoboehas"
+        android:layout_marginTop="117dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    
+    <TextView
+        android:id="@id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogoBoehas"
+        android:layout_marginTop="330dp"
+        android:text="Welcome to Boehas Kitchen"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/tvSubtitleWelcome"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+        android:layout_marginTop="12dp"
+        android:text="Order the best meals in Lagos and have them delivered to your doorstep in little or no time. Doesn’t that sound delicious???"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        />
+
+    <LinearLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitleWelcome"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:background="@drawable/bottom_sheet_backgroundwhite"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp">
+
+
+        <ImageView
+            android:layout_marginTop="13dp"
+            android:layout_width="20dp"
+            android:layout_height="21dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_arrowright" />
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
