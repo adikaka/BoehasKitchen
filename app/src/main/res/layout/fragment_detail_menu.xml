@@ -18,22 +18,24 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/componentHomeHeader"
-                layout="@layout/component_home_header"
+                android:id="@+id/detailMenuHeader"
+                layout="@layout/component_detail_menu_header"
+                android:layout_width="match_parent"
+                android:layout_height="500dp" />
+
+            <include
+                android:id="@+id/detailMenuDescription"
+                layout="@layout/component_detail_menu_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <include
-                android:id="@+id/componentHomeMenu"
-                layout="@layout/component_home_menu"
+                android:id="@+id/detailMenuIngridient"
+                layout="@layout/component_detail_menu_ingridients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <ImageView
-                android:layout_width="112dp"
-                android:layout_height="33dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_backtotop" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

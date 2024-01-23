@@ -16,6 +16,7 @@
         android:src="@drawable/ic_listmenu"/>
 
     <ImageView
+        android:id="@+id/icWishlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="0dp"

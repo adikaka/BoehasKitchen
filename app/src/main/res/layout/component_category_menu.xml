@@ -9,8 +9,9 @@
         android:id="@+id/rvMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="2"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:orientation="vertical"
-        tools:itemCount="4"
-        tools:listitem="@layout/item_category_menu" />
+        tools:itemCount="8"
+        tools:listitem="@layout/item_menu" />
 </LinearLayout>
