@@ -40,7 +40,7 @@
                 android:background="@android:color/transparent"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
-                android:text="Email"
+                android:hint="Email"
                 android:textColor="#E6858C83"
                 android:textSize="15dp" />
         </LinearLayout>
@@ -60,7 +60,7 @@
                 android:background="@android:color/transparent"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="15dp"
-                android:text="Password"
+                android:hint="Password"
                 android:textColor="#E6858C83"
                 android:textSize="15dp" />
         </LinearLayout>

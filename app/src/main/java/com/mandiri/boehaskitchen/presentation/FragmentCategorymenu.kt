@@ -1,12 +1,14 @@
 package com.mandiri.boehaskitchen.presentation
 
+import ListMenuAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.mandiri.bebasinaja.base.BaseFragment
 import com.mandiri.boehaskitchen.MainActivity
 import com.mandiri.boehaskitchen.databinding.FragmentCategorymenuBinding
-import com.mandiri.boehaskitchen.databinding.FragmentHomeBinding
-import com.mandiri.boehaskitchen.databinding.FragmentWishlistBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,6 +19,8 @@ import retrofit2.http.Query
 
 class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
 
+    private val listMenuAdapter : ListMenuAdapter = ListMenuAdapter(mutableListOf())
+
     override fun inflateBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -25,15 +29,28 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
     }
 
     override fun setupView() {
+        binding.componentHomeMenu.rvMenu.adapter = listMenuAdapter
 
+//        listMenuAdapter.setOnClickDetailMenuModel {
+//            val fragmentToDisplay = FragmentDetailMenu()
+//            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+//        }
+        listMenuAdapter.setOnClickDetailMenuModel { mealId ->
+            val fragmentToDisplay = FragmentDetailMenu.newInstance(mealId)
+            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            getMealList()
+        }
     }
 
-    suspend fun getMeal(){
+    suspend fun getMealList(){
         RetrofitInstance.api.getMealList("Seafood").enqueue(object : Callback<MealList>{
             override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
                 if (response.body() != null) {
-                    val value = response.body()!!.meals[0]
-                    binding.
+                    val value = response.body()!!.meals
+                    listMenuAdapter.setDataMenu(value.toMutableList())
                 }
                 else {
                     return

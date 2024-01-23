@@ -18,7 +18,7 @@ class FragmentSignup : BaseFragment<FragmentSignupBinding>() {
 
     override fun setupView() {
         binding.btnSignin.setOnClickListener{
-            val fragmentToDisplay = FragmentHome()
+            val fragmentToDisplay = FragmentLogin()
             (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
         }
     }

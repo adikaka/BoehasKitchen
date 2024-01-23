@@ -13,12 +13,15 @@ class CategoryMenuAdapter(
     inner class CategoryMenuViewHolder(private val itemBinding: ItemCategoryMenuBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(data: CategoryMenuModel){
+        fun bind(data: CategoryMenuModel, listener: (CategoryMenuModel) -> Unit){
             itemBinding.tvTitleMenu.text = data.name
             itemBinding.tvRating.text = data.rating
             itemBinding.tvPrice.text = data.price
             itemBinding.tvRespon.text = data.respon
             itemBinding.imgCategoryMenu.setImageResource(data.imageCard)
+            itemBinding.root.setOnClickListener{
+                listener.invoke(data)
+            }
         }
     }
 
@@ -35,7 +38,7 @@ class CategoryMenuAdapter(
     override fun getItemCount() = categoryMenuData.size
 
     override fun onBindViewHolder(holder: CategoryMenuViewHolder, position: Int) {
-        holder.bind(categoryMenuData[position])
+        holder.bind(categoryMenuData[position], _onClickCategoryMenu)
     }
 
     fun setOnClickCategoriModel(listener: (CategoryMenuModel) -> Unit){
