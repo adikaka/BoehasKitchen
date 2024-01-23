@@ -27,12 +27,14 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/background_namedetailmenu"
         android:orientation="vertical"
+        android:paddingVertical="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivListMenu"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView

@@ -31,10 +31,6 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
     override fun setupView() {
         binding.componentHomeMenu.rvMenu.adapter = listMenuAdapter
 
-//        listMenuAdapter.setOnClickDetailMenuModel {
-//            val fragmentToDisplay = FragmentDetailMenu()
-//            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
-//        }
         listMenuAdapter.setOnClickDetailMenuModel { mealId ->
             val fragmentToDisplay = FragmentDetailMenu.newInstance(mealId)
             (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
@@ -42,6 +38,15 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
 
         GlobalScope.launch(Dispatchers.Main) {
             getMealList()
+        }
+
+        binding.componentHomeHeader.ivListMenu.setOnClickListener{
+            val fragmentToDisplay = FragmentNavigationMenu()
+            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+        }
+        binding.componentHomeHeader.icWishlist.setOnClickListener{
+            val fragmentToDisplay = FragmentWishlist()
+            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
         }
     }
 

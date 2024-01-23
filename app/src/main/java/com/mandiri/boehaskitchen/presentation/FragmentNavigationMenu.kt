@@ -30,8 +30,7 @@ class FragmentNavigationMenu : BaseFragment<FragmentNavigationMenuBinding>() {
             (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
         }
         binding.ivBack.setOnClickListener {
-            val fragmentToDisplay = FragmentHome()
-            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+            requireActivity().onBackPressed()
         }
     }
 }

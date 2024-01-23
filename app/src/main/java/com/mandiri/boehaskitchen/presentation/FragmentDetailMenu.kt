@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.mandiri.bebasinaja.base.BaseFragment
+import com.mandiri.boehaskitchen.MainActivity
 import com.mandiri.boehaskitchen.databinding.FragmentDetailMenuBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -40,6 +41,9 @@ class FragmentDetailMenu : BaseFragment<FragmentDetailMenuBinding>() {
             if (!mealId.isNullOrBlank()) {
                 getMeal(mealId)
             }
+        }
+        binding.detailMenuHeader.ivListMenu.setOnClickListener{
+            requireActivity().onBackPressed()
         }
     }
 
