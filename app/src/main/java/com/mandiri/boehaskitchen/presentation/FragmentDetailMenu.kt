@@ -3,16 +3,14 @@ package com.mandiri.boehaskitchen.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.mandiri.bebasinaja.base.BaseFragment
-import com.mandiri.boehaskitchen.MainActivity
 import com.mandiri.boehaskitchen.databinding.FragmentDetailMenuBinding
+import com.mandiri.boehaskitchen.viewmodel.DetailMenuViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FragmentDetailMenu : BaseFragment<FragmentDetailMenuBinding>() {
 
@@ -26,7 +24,10 @@ class FragmentDetailMenu : BaseFragment<FragmentDetailMenuBinding>() {
             fragment.arguments = args
             return fragment
         }
+
     }
+
+    private lateinit var detailMenuViewModel: DetailMenuViewModel
 
     override fun inflateBinding(
         inflater: LayoutInflater,
@@ -36,42 +37,29 @@ class FragmentDetailMenu : BaseFragment<FragmentDetailMenuBinding>() {
     }
 
     override fun setupView() {
+        detailMenuViewModel = ViewModelProvider(this).get(DetailMenuViewModel::class.java)
+
         GlobalScope.launch(Dispatchers.Main) {
             val mealId = arguments?.getString(ARG_MEAL_ID)
             if (!mealId.isNullOrBlank()) {
-                getMeal(mealId)
+                detailMenuViewModel.getMealDetails(mealId)
             }
         }
+
+        detailMenuViewModel.mealDetailsLiveData.observe(viewLifecycleOwner, { mealList ->
+            binding.detailMenuHeader.etNameDetailMenu.text = mealList?.meals?.get(0)?.strMeal
+            Glide.with(requireContext()).load(mealList?.meals?.get(0)?.strMealThumb).into(binding.detailMenuHeader.ivFoodHeader)
+            binding.detailMenuIngridient.tvIngreOne.text = mealList?.meals?.get(0)?.strIngredient1
+            binding.detailMenuIngridient.tvIngreTwo.text = mealList?.meals?.get(0)?.strIngredient2
+            binding.detailMenuIngridient.tvIngreThree.text = mealList?.meals?.get(0)?.strIngredient3
+            binding.detailMenuIngridient.tvIngreFour.text = mealList?.meals?.get(0)?.strIngredient4
+        })
+
         binding.detailMenuHeader.ivListMenu.setOnClickListener{
             requireActivity().onBackPressed()
         }
     }
 
-    suspend fun getMeal(mealId: String?){
-        // Gunakan mealId yang diberikan saat melakukan panggilan API
-        if (mealId.isNullOrBlank()) {
-            return
-        }
-
-        RetrofitInstance.api.getMealDetails(mealId).enqueue(object : Callback<MealList>{
-            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
-                if (response.body() != null) {
-                    val value = response.body()!!.meals[0]
-                    binding.detailMenuHeader.etNameDetailMenu.text = value.strMeal
-                    Glide.with(requireContext()).load(value.strMealThumb).into(binding.detailMenuHeader.ivFoodHeader)
-
-                }
-                else {
-                    return
-                }
-            }
-
-            override fun onFailure(call: Call<MealList>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
 
 }
 

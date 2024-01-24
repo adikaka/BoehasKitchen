@@ -4,11 +4,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mandiri.boehaskitchen.R
-import com.mandiri.boehaskitchen.databinding.FragmentCategorymenuBinding
-import com.mandiri.boehaskitchen.databinding.ItemCategoryMenuBinding
 import com.mandiri.boehaskitchen.databinding.ItemMenuBinding
-import com.mandiri.boehaskitchen.model.CategoryMenuModel
-import com.mandiri.boehaskitchen.presentation.Meal
+import com.mandiri.boehaskitchen.model.Meal
 
 class ListMenuAdapter(
     private var listMenuData: MutableList<Meal>

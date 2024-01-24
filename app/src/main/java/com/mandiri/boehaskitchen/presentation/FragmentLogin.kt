@@ -17,8 +17,15 @@ class FragmentLogin : BaseFragment<FragmentLoginBinding>() {
 
     override fun setupView() {
         binding.btnLogin.setOnClickListener {
-            val fragmentToDisplay = FragmentHome()
-            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPass.text.toString()
+
+            if (email == "admin@gmail.com" && password == "admin123") {
+                val fragmentToDisplay = FragmentHome()
+                (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+            } else {
+                showToast("Berikan masukan yang sesuai")
+            }
         }
         binding.btnSignup.setOnClickListener {
             val fragmentToDisplay = FragmentSignup()

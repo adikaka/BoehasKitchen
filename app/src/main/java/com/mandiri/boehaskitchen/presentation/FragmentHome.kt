@@ -8,8 +8,6 @@ import com.mandiri.boehaskitchen.MainActivity
 import com.mandiri.boehaskitchen.R
 import com.mandiri.boehaskitchen.databinding.FragmentHomeBinding
 import com.mandiri.boehaskitchen.model.CategoryMenuModel
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 
 class FragmentHome : BaseFragment<FragmentHomeBinding>() {
 

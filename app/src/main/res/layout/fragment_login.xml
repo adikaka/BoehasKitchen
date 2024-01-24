@@ -35,6 +35,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -55,6 +56,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/etPass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
@@ -62,7 +64,8 @@
                 android:paddingVertical="15dp"
                 android:hint="Password"
                 android:textColor="#E6858C83"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:inputType="textPassword"/>
         </LinearLayout>
         
         <TextView

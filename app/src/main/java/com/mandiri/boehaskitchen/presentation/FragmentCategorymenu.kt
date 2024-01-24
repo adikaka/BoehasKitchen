@@ -3,22 +3,18 @@ package com.mandiri.boehaskitchen.presentation
 import ListMenuAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.mandiri.bebasinaja.base.BaseFragment
 import com.mandiri.boehaskitchen.MainActivity
 import com.mandiri.boehaskitchen.databinding.FragmentCategorymenuBinding
+import com.mandiri.boehaskitchen.viewmodel.CategoryMenuViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
 
 class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
 
+    private lateinit var categoryMenuViewModel: CategoryMenuViewModel
     private val listMenuAdapter : ListMenuAdapter = ListMenuAdapter(mutableListOf())
 
     override fun inflateBinding(
@@ -29,6 +25,8 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
     }
 
     override fun setupView() {
+        categoryMenuViewModel = ViewModelProvider(this).get(CategoryMenuViewModel::class.java)
+
         binding.componentHomeMenu.rvMenu.adapter = listMenuAdapter
 
         listMenuAdapter.setOnClickDetailMenuModel { mealId ->
@@ -36,8 +34,12 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
             (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
         }
 
+        categoryMenuViewModel.mealListLiveData.observe(viewLifecycleOwner, { mealList ->
+            mealList?.toMutableList()?.let { listMenuAdapter.setDataMenu(it) }
+        })
+
         GlobalScope.launch(Dispatchers.Main) {
-            getMealList()
+            categoryMenuViewModel.getMealList("Seafood")
         }
 
         binding.componentHomeHeader.ivListMenu.setOnClickListener{
@@ -49,54 +51,4 @@ class FragmentCategorymenu : BaseFragment<FragmentCategorymenuBinding>() {
             (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
         }
     }
-
-    suspend fun getMealList(){
-        RetrofitInstance.api.getMealList("Seafood").enqueue(object : Callback<MealList>{
-            override fun onResponse(call: Call<MealList>, response: Response<MealList>) {
-                if (response.body() != null) {
-                    val value = response.body()!!.meals
-                    listMenuAdapter.setDataMenu(value.toMutableList())
-                }
-                else {
-                    return
-                }
-            }
-
-            override fun onFailure(call: Call<MealList>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
 }
-
-object RetrofitInstance {
-    val api:MealApi by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://www.themealdb.com/api/json/v1/1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(MealApi::class.java)
-    }
-}
-
-interface MealApi {
-    @GET("lookup.php?")
-    fun getMealDetails(@Query("i") id: String): Call<MealList>
-
-    @GET("filter.php?")
-    fun getMealList(@Query("c") id: String): Call<MealList>
-}
-
-
-data class MealList(
-    val meals: List<Meal>
-)
-
-data class Meal(
-    val idMeal: String,
-    val strCategory: String?,
-    val strMeal: String?,
-    val strMealThumb: String?
-)
