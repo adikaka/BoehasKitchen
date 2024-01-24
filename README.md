@@ -13,3 +13,5 @@ Boehas Kitchen is a food catering application intended to provide delicious, hea
 3. **Glade** = Glade is a user interface designer for GTK applications. It allows for the design of user interfaces visually, which can then be integrated into Android projects.
 
 # Demo
+https://github.com/adikaka/BoehasKitchen/assets/85976370/403ffd1f-9bd9-4746-8c5a-488552ae0aa7
+
