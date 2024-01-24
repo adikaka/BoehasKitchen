@@ -32,5 +32,8 @@ class FragmentNavigationMenu : BaseFragment<FragmentNavigationMenuBinding>() {
         binding.ivBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding.btnLogout.setOnClickListener{
+            requireActivity().finish()
+        }
     }
 }

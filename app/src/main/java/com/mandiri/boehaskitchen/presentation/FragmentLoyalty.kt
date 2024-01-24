@@ -18,8 +18,7 @@ class FragmentLoyalty : BaseFragment<FragmentLoyaltyBinding>() {
 
     override fun setupView() {
         binding.ivBack.setOnClickListener {
-            val fragmentToDisplay = FragmentHome()
-            (requireActivity() as MainActivity).replaceFragment(fragmentToDisplay)
+            requireActivity().onBackPressed()
         }
     }
 }

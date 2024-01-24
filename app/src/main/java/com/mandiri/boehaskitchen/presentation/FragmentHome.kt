@@ -58,14 +58,14 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
                 rating = "4.8",
                 respon = "(105 ratings)",
                 price = "Rp 20.000",
-                imageCard = R.drawable.img_maindiches
+                imageCard = R.drawable.img_bestseller
             ),
             CategoryMenuModel(
                 name = "Discounted Offers",
                 rating = "4.6",
                 respon = "(555 ratings)",
                 price = "Rp 15.000",
-                imageCard = R.drawable.img_maindiches
+                imageCard = R.drawable.img_discount
             ),
         )
     }
